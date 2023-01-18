@@ -13,21 +13,42 @@ Het model in deze file heeft in de eerste hidden layer 100 units, in de tweede l
 De dropout staat op 0.5, hij heeft in een blog gelezen dat dit de beste settings voor dropout zou zijn.
 
 - Wat vind je van de architectuur die hij heeft uitgekozen (een Neuraal netwerk met drie Linear layers)? Wat zijn sterke en zwakke kanten van een model als dit in het algemeen? En voor dit specifieke probleem?
+
+### <span style='background :yellow' > Antwoord: De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een CNN, zou geschikter zijn voor geluidsclassificatie. </span>
+
 - Wat vind je van de keuzes die hij heeft gemaakt in de LinearConfig voor het aantal units ten opzichte van de data? En van de dropout?
+
+### <span style='background :yellow' > Antwoord: De input 13 is gelijk aan het aantal attributen en de output 20 gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). H1 100 is mogelijk 10 cijfers uitgesproken door mannen X 10 cijfers uitgesproken door vrouwen (= 100). H2 10 betreft het aantal cijfers (0 t/m 9). De dropout lijkt aan de hoge kant met 0,5 (= een verlies van de helft). Al met al lijken de keuzes te verklaren, met uitzondering van de (te) hoge dropout.</span>
 
 ## 1b
 Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`) dan kun je zien dat het eerste dat hij doet `x.mean(dim=1)` is. 
 
 - Wat is het effect hiervan? Welk probleem probeert hij hier op te lossen? (maw, wat gaat er fout als hij dit niet doet?)
+
+### <span style='background :yellow' > Antwoord: Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval de tweede dimensie. De data bestaat uit ....., waarvoor een oplossing moet komen. </span>
+
 - Hoe had hij dit ook kunnen oplossen?
+
+### <span style='background :yellow' > Antwoord: Door het toepassen van een average pooling functie transformeert de data naar een 1 dimensionele vector. VERDERE UITLEG  </span>
+
 - Wat zijn voor een nadelen van de verschillende manieren om deze stap te doen?
+
+### <span style='background :yellow' > Antwoord:  </span>
 
 ### 1c
 Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitleggen wat een betere architectuur zou zijn.
 
 - Beschrijf de architecturen die je kunt overwegen voor een probleem als dit. Het is voldoende als je beschrijft welke layers in welke combinaties je zou kunnen gebruiken.
+
+### <span style='background :yellow' > Antwoord:  </span>
+
 - Geef vervolgens een indicatie en motivatie voor het aantal units/filters/kernelsize etc voor elke laag die je gebruikt, en hoe je omgaat met overgangen (bv van 3 naar 2 dimensies). Een indicatie is bijvoorbeeld een educated guess voor een aantal units, plus een boven en ondergrens voor het aantal units. Met een motivatie laat je zien dat jouw keuze niet een random selectie is, maar dat je 1) andere problemen hebt gezien en dit probleem daartegen kunt afzetten en 2) een besef hebt van de consquenties van het kiezen van een range.
+
+### <span style='background :yellow' > Antwoord:  </span>
+
 - Geef aan wat jij verwacht dat de meest veelbelovende architectuur is, en waarom (opnieuw, laat zien dat je niet random getallen noemt, of keuzes maakt, maar dat jij je keuze baseert op ervaring die je hebt opgedaan met andere problemen).
+
+### <span style='background :yellow' > Antwoord:  </span>
 
 ### 1d
 Implementeer jouw veelbelovende model: 
@@ -36,7 +57,12 @@ Implementeer jouw veelbelovende model:
 - Maak in `settings.py` een nieuwe config voor jouw model
 - Train het model met enkele educated guesses van parameters. 
 - Rapporteer je bevindingen. Ga hier niet te uitgebreid hypertunen (dat is vraag 2), maar rapporteer (met een afbeelding in `antwoorden/img` die je linkt naar jouw .md antwoord) voor bijvoorbeeld drie verschillende parametersets hoe de train/test loss curve verloopt.
+
+### <span style='background :yellow' > Antwoord:  </span>
+
 - reflecteer op deze eerste verkenning van je model. Wat valt op, wat vind je interessant, wat had je niet verwacht, welk inzicht neem je mee naar de hypertuning.
+
+### <span style='background :yellow' > Antwoord:  </span>
 
 Hieronder een voorbeeld hoe je een plaatje met caption zou kunnen invoegen.
 
