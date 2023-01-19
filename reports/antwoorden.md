@@ -14,11 +14,11 @@ De dropout staat op 0.5, hij heeft in een blog gelezen dat dit de beste settings
 
 - Wat vind je van de architectuur die hij heeft uitgekozen (een Neuraal netwerk met drie Linear layers)? Wat zijn sterke en zwakke kanten van een model als dit in het algemeen? En voor dit specifieke probleem?
 
-### <span style='background :yellow' > Antwoord: De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een CNN, zou geschikter zijn voor geluidsclassificatie met een volgorderlijkheid. </span>
+### <span style='background :yellow' > Antwoord: De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een RNN of CNN, zou geschikter zijn voor geluidsclassificatie met een volgorderlijkheid. </span>
 
 - Wat vind je van de keuzes die hij heeft gemaakt in de LinearConfig voor het aantal units ten opzichte van de data? En van de dropout?
 
-### <span style='background :yellow' > Antwoord: De input 13 is gelijk aan het aantal attributen en de output 20 gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. H1 100 is mogelijk 10 cijfers uitgesproken door mannen X 10 cijfers uitgesproken door vrouwen (= 100). H2 10 betreft het aantal cijfers (0 t/m 9). De dropout lijkt aan de hoge kant met 0,5 (= een verlies van de helft). Al met al lijken de keuzes te verklaren, met uitzondering van de (te) hoge dropout.</span>
+### <span style='background :yellow' > Antwoord: De input 13 is gelijk aan het aantal attributen en de output 20 gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. H1 100 AANVULLEN. H2 10 betreft het aantal cijfers (0 t/m 9). De dropout lijkt aan de hoge kant met 0,5 (= een verlies van de helft). Al met al lijken de keuzes te verklaren, met uitzondering van de (te) hoge dropout.</span>
 
 ## 1b
 Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`) dan kun je zien dat het eerste dat hij doet `x.mean(dim=1)` is. 
@@ -42,47 +42,38 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 
 - Beschrijf de architecturen die je kunt overwegen voor een probleem als dit. Het is voldoende als je beschrijft welke layers in welke combinaties je zou kunnen gebruiken.
 
-### <span style='background :yellow' > Antwoord: Ik zou een model gebruiken geschikt voor een timeserie, zoals een CNN model met de volgende lagen:
+### <span style='background :yellow' > Antwoord: Ik zou een model gebruiken geschikt voor sequential data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN/GRU model. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, maar de GRU variant lost dit op. Vanishing gradient aanvullen
 ---
-### <span style='background :yellow' > Conv2D
-### <span style='background :yellow' > Relu
-### <span style='background :yellow' > Maxpool
-### <span style='background :yellow' > Conc2D
-### <span style='background :yellow' > Relu  
-### <span style='background :yellow' > Maxpool
-### <span style='background :yellow' > Conv2D
-### <span style='background :yellow' > Relu
-### <span style='background :yellow' > Maxpool
----
-### <span style='background :yellow' > Flatten
-### <span style='background :yellow' > Linear
-### <span style='background :yellow' > Relu
-### <span style='background :yellow' > Linear
-### <span style='background :yellow' > Relu
-### <span style='background :yellow' > Linear</span>
----
+### <span style='background :yellow' > Het model bevat de volgende lagen: 
+### <span style='background :yellow' > 
+### <span style='background :yellow' > 
+### <span style='background :yellow' > 
 
-### <span style='background :yellow' > Het eerste blok bestaat uit drie herhalingen van een convolutional laag, een relu activatie laag en een maxpool laag. Het tweede blok wordt de data UITLEG 
-
-### <span style='background :yellow' > 1) Convolutional layer:
-### <span style='background :yellow' > 2) Pooling layer: 
-### <span style='background :yellow' > 3) Fully Connected layer:
-### <span style='background :yellow' > 4) Dropout: 
-### <span style='background :yellow' > 5) Activation functions: </span>
+---
+### <span style='background :yellow' > UITLEG</span>
+---
+ 
 
 - Geef vervolgens een indicatie en motivatie voor het aantal units/filters/kernelsize etc voor elke laag die je gebruikt, en hoe je omgaat met overgangen (bv van 3 naar 2 dimensies). Een indicatie is bijvoorbeeld een educated guess voor een aantal units, plus een boven en ondergrens voor het aantal units. Met een motivatie laat je zien dat jouw keuze niet een random selectie is, maar dat je 1) andere problemen hebt gezien en dit probleem daartegen kunt afzetten en 2) een besef hebt van de consquenties van het kiezen van een range.
 
 ### <span style='background :yellow' > Antwoord:  
 ### <span style='background :yellow' > Learning rate: Op basis van de uitkomsten tussentijdse opdracht is de instelling optimizer 0,001 het beste gebleken voor de classificatie.
-### <span style='background :yellow' > Filters: 128 lijkt een mooie instelling om te starten. In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten. Om de stappen x2 tussen 8 t/m 512 te kunnen maken is voor 128 (ipv 100) gekozen.
+### <span style='background :yellow' > Filters: 128 lijkt een mooie instelling om te starten. In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. Om de stappen (filter x 2) tussen 8 t/m 512 te kunnen maken is voor 128 (ipv 100) gekozen.
 ### <span style='background :yellow' > Kernel size: 3, is de optimale keuze om symetrische lagen te krijgen. Bij kernels 2 en 4 is dit niet mogelijk.
 ### <span style='background :yellow' > Loss function: Cross-entropy, omdat deze passend is voor een classificatie.
-### <span style='background :yellow' > Optimizer: Adam, omdat deze optimizer 
-### <span style='background :yellow' > Dimensies: Door de flatten optie te gebruiken wordt de data twee dimensionaal gemaakt.</span>
+### <span style='background :yellow' > Optimizer: Adam, omdat deze optimizer wordt gezien als een van de betere optimizer en minder parameters nodig heeft. Dit is ook gebleken uit de resultaten van de tussentijdse opdracht.
+### <span style='background :yellow' > Dimensies: Door de flatten optie te gebruiken wordt de data twee dimensionaal gemaakt.
+
+
+input_size: 3,
+hidden_size: 32,
+dropout: 0.1,
+num_layers: 4,
+output_size: 20</span>
 
 - Geef aan wat jij verwacht dat de meest veelbelovende architectuur is, en waarom (opnieuw, laat zien dat je niet random getallen noemt, of keuzes maakt, maar dat jij je keuze baseert op ervaring die je hebt opgedaan met andere problemen).
 
-### <span style='background :yellow' > Antwoord:  </span>
+### <span style='background :yellow' > Antwoord:   </span>
 
 ### 1d
 Implementeer jouw veelbelovende model: 
