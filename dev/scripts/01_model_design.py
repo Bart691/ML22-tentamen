@@ -13,17 +13,56 @@ if __name__ == "__main__":
 
     trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    from tentamen.model import Linear
-    from tentamen.settings import LinearConfig
+    # from tentamen.model import Linear
+    # from tentamen.settings import LinearConfig
+    
+
+    # # configs = [
+    #     LinearConfig(
+    #         input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
+    #     ),
+    # ]
+
+    # # for config in configs:
+    #     model = Linear(config.dict())  # type: ignore
+
+    #     trainedmodel = trainloop(
+    #         epochs=50,
+    #         model=model,  # type: ignore
+    #         optimizer=torch.optim.Adam,
+    #         learning_rate=1e-3,
+    #         loss_fn=torch.nn.CrossEntropyLoss(),
+    #         metrics=[Accuracy()],
+    #         train_dataloader=trainstreamer.stream(),
+    #         test_dataloader=teststreamer.stream(),
+    #         log_dir=presets.logdir,
+    #         train_steps=len(trainstreamer),
+    #         eval_steps=len(teststreamer),
+    #     )
+
+    #     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    #     path = presets.modeldir / (timestamp + presets.modelname)
+    #     logger.info(f"save model to {path}")
+    #     torch.save(trainedmodel, path)
+
+
+    from tentamen.model import GRUmodel
+    from tentamen.settings import GRUmodelConfig
 
     configs = [
-        LinearConfig(
-            input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
+        GRUmodelConfig(
+            input=13, 
+            output=20, 
+            tunedir=presets.logdir, 
+            hidden=64, 
+            dropout=0.2, 
+            num_layers=3
         ),
     ]
 
+
     for config in configs:
-        model = Linear(config.dict())  # type: ignore
+        model = GRUmodel(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
             epochs=50,
