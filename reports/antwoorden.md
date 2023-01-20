@@ -89,7 +89,7 @@ Implementeer jouw veelbelovende model:
 - Rapporteer je bevindingen. Ga hier niet te uitgebreid hypertunen (dat is vraag 2), maar rapporteer (met een afbeelding in `antwoorden/img` die je linkt naar jouw .md antwoord) voor bijvoorbeeld drie verschillende parametersets hoe de train/test loss curve verloopt.
 
 ### <span style='background :yellow' > **Antwoord:**  
-### <span style='background :yellow' > TOELICHTING</span>
+### <span style='background :yellow' > De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.</span>
 
 - reflecteer op deze eerste verkenning van je model. Wat valt op, wat vind je interessant, wat had je niet verwacht, welk inzicht neem je mee naar de hypertuning.
 
