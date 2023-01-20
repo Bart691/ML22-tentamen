@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import torch
-import tensorflow as tf
+import tensorboard as tb
 from loguru import logger
 
 
@@ -53,19 +53,19 @@ if __name__ == "__main__":
     from tentamen.model import GRUmodel
     from tentamen.settings import GRUmodelConfig
 
-    configs = [
+    configs_GRUmodel = [
         GRUmodelConfig(
-            input_size=13, 
+            input=13, 
             output=20, 
             tunedir=presets.logdir, 
-            hidden_size=64, 
+            hidden=64, 
             dropout=0.2, 
             num_layers=3
         ),
     ]
 
 
-    for config in configs:
+    for config in configs_GRUmodel:
         model = GRUmodel(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
