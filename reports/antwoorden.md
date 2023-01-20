@@ -25,7 +25,7 @@ De dropout staat op 0.5, hij heeft in een blog gelezen dat dit de beste settings
 ### <span style='background :yellow' >H2 10: Om deze beter te laten aansluiten met H1 en de Output zou ik deze op 64 of 32 zetten. 
 ### <span style='background :yellow' >Output 20 gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. 
 ### <span style='background :yellow' >Dropout 0,5: Dit lijkt, voor een relatief kleine dataset, aan de hoge kant met 0,5 (= een verlies van de helft). Een acceptabele start van de dropout lijkt mij 0,2. 
-### <span style='background :yellow' >Al met al lijken de keuzes te verklaren, met uitzondering van de (te) hoge dropout.</span>
+</span>
 
 ## 1b
 Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`) dan kun je zien dat het eerste dat hij doet `x.mean(dim=1)` is. 
