@@ -1,7 +1,9 @@
 from datetime import datetime
 
 import torch
+import tensorflow as tf
 from loguru import logger
+
 
 from tentamen.data import datasets
 from tentamen.model import Accuracy
@@ -51,10 +53,10 @@ if __name__ == "__main__":
 
     configs = [
         GRUmodelConfig(
-            input=13, 
+            input_size=13, 
             output=20, 
             tunedir=presets.logdir, 
-            hidden=64, 
+            hidden_size=64, 
             dropout=0.2, 
             num_layers=3
         ),
