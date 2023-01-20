@@ -48,6 +48,8 @@ if __name__ == "__main__":
     #     torch.save(trainedmodel, path)
 
 
+# TOEVOEGING TBV VRAAG 1D
+
     from tentamen.model import GRUmodel
     from tentamen.settings import GRUmodelConfig
 
