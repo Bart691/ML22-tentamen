@@ -38,7 +38,7 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval de tweede dimensie. Door deze stap te nemen hoopt de collega een overfitting te voorkomen. 
+Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting bij het lineaire model. 
 
 ---
 
@@ -67,7 +67,7 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 ### <span style='background :yellow' > **Antwoord:** 
 Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, maar de GRU variant lost dit op. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn.
 
-Het model bevat de volgende lagen: 
+Het model bevat de volgende lagen:  
 - abc
 - abc
 
@@ -136,13 +136,57 @@ Implementeer de hypertuning voor jouw architectuur:
 - zorg dat je model geschikt is voor hypertuning
 - je mag je model nog wat aanpassen, als vraag 1d daar aanleiding toe geeft. Als je in 1d een ander model gebruikt dan hier, geef je model dan een andere naam zodat ik ze naast elkaar kan zien.
 - Stel dat je je model aanpast, laat dan je code zien (bv 2e model met aanpassing).
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+TOELICHTING 
+
+---
+
 - voeg jouw model in op de juiste plek in de `tune.py` file.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+TOELICHTING 
+
+---
+
 - maak een zoekruimte aan met behulp van pydantic (naar het voorbeeld van LinearSearchSpace), maar pas het aan voor jouw model.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+TOELICHTING 
+
+---
+
 - Licht je keuzes toe: wat hypertune je, en wat niet? Waarom? En in welke ranges zoek je, en waarom? Zie ook de [docs van ray over search space](https://docs.ray.io/en/latest/tune/api_docs/search_space.html#tune-sample-docs) en voor [rondom search algoritmes](https://docs.ray.io/en/latest/tune/api_docs/suggestion.html#bohb-tune-search-bohb-tunebohb) voor meer opties en voorbeelden.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+- Model gewijzigd naar GRUmodel
+- from tentamen.odel import GRUmodel & from pathlib import Path toegevoegd
+- Epochs naar 50
+- Zoekruimte in config gewijzigd naar SearchSpace, passend bij een RRN.
+- tune_dir en data_dir 
+
+---
 
 ### 2b
 - Analyseer de resultaten van jouw hypertuning; visualiseer de parameters van jouw hypertuning en sla het resultaat van die visualisatie op in `reports/img`. Suggesties: `parallel_coordinates` kan handig zijn, maar een goed gekozen histogram of scatterplot met goede kleuren is in sommige situaties duidelijker! Denk aan x en y labels, een titel en units voor de assen.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+TOELICHTING 
+
+---
+
 - reflecteer op de hypertuning. Wat werkt wel, wat werkt niet, wat vind je verrassend, wat zijn trade-offs die je ziet in de hypertuning, wat zijn afwegingen bij het kiezen van een uiteindelijke hyperparametersetting.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+TOELICHTING 
+
+---
 
 Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en geef een interpretatie en toelichting op wat je ziet.
 
