@@ -60,7 +60,7 @@ if __name__ == "__main__":
             tunedir=presets.logdir, 
             hidden=64, 
             dropout=0.2, 
-            num_layers=3
+            num_layers=4
         ),
     ]
 
