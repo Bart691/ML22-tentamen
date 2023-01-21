@@ -49,7 +49,6 @@ class Accuracy:
 
 # TOEVOEGING TBV VRAAG 1D
 
-
 class gru_model(nn.Module):
     def __init__(self, config: Dict) -> None:
         super().__init__()

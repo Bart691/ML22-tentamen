@@ -45,20 +45,19 @@ class BaseSearchSpace(BaseModel):
         arbitrary_types_allowed = True
 
 
-class LinearConfig(BaseSearchSpace):
-    h1: int
-    h2: int
-    dropout: float
+# class LinearConfig(BaseSearchSpace):
+#     h1: int
+#     h2: int
+#     dropout: float
 
 
-class LinearSearchSpace(BaseSearchSpace):
-    h1: Union[int, SAMPLE_INT] = tune.randint(16, 128)
-    h2: Union[int, SAMPLE_INT] = tune.randint(16, 128)
-    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.5)
+# class LinearSearchSpace(BaseSearchSpace):
+#     h1: Union[int, SAMPLE_INT] = tune.randint(16, 128)
+#     h2: Union[int, SAMPLE_INT] = tune.randint(16, 128)
+#     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.5)
 
 
 # TOEVOEGING TBV VRAAG 1D
-
 
 class gru_modelConfig(BaseSearchSpace):
     hidden: int

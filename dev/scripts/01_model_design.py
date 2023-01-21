@@ -9,10 +9,10 @@ from tentamen.model import Accuracy
 from tentamen.settings import presets
 from tentamen.train import trainloop
 
-if __name__ == "__main__":
-    logger.add(presets.logdir / "01.log")
+# if __name__ == "__main__":
+#     logger.add(presets.logdir / "01.log")
 
-    trainstreamer, teststreamer = datasets.get_arabic(presets)
+#     trainstreamer, teststreamer = datasets.get_arabic(presets)
 
     # from tentamen.model import Linear
     # from tentamen.settings import LinearConfig
@@ -45,7 +45,14 @@ if __name__ == "__main__":
     #     logger.info(f"save model to {path}")
     #     torch.save(trainedmodel, path)
 
-    # TOEVOEGING TBV VRAAG 1D
+
+
+# TOEVOEGING TBV VRAAG 1D
+
+if __name__ == "__main__":
+    logger.add(presets.logdir / "01.log")
+
+    trainstreamer, teststreamer = datasets.get_arabic(presets)
 
     from tentamen.model import gru_model
     from tentamen.settings import gru_modelConfig
