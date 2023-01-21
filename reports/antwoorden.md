@@ -16,7 +16,7 @@ De dropout staat op 0.5, hij heeft in een blog gelezen dat dit de beste settings
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand om mee te starten bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creëert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een RNN of CNN, zou geschikter zijn voor timeserie met een volgorde geschikter zijn. 
+De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand om mee te starten bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creëert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een RNN of CNN, zou geschikter zijn voor timeserie met een volgordelijkheid. 
 
 ---
 
@@ -38,7 +38,7 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting bij het lineaire model. 
+Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model niet werken. 
 
 ---
 
@@ -83,7 +83,7 @@ Het model bevat de volgende lagen:
 - Filters hidden layers: 128 lijkt een mooie instelling om te starten. In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. Om de stappen (filter x 2) tussen 8 t/m 512 te kunnen maken is voor 128 (ipv 100) gekozen.
 - Loss function: Cross-Entropy-Loss, omdat deze passend is voor een classificatie.
 - Optimizer: Adam, omdat deze optimizer wordt gezien als een van de betere optimizers en minder parameters nodig heeft. Dit is ook gebleken uit de resultaten van de tussentijdse opdracht.
-- Num layers: AANVULLEN
+- Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen.
 - Dimensies: Door de flatten optie te gebruiken wordt de twee dimensionaal data omgezet naar een eendimensionale array.
 ---
 
@@ -91,7 +91,7 @@ Het model bevat de volgende lagen:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht.
+Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training.
 
 ---
 
@@ -100,12 +100,26 @@ Implementeer jouw veelbelovende model:
 
 - Maak in `model.py` een nieuw nn.Module met jouw architectuur
 - Maak in `settings.py` een nieuwe config voor jouw model
-- Train het model met enkele educated guesses van parameters. 
-- Rapporteer je bevindingen. Ga hier niet te uitgebreid hypertunen (dat is vraag 2), maar rapporteer (met een afbeelding in `antwoorden/img` die je linkt naar jouw .md antwoord) voor bijvoorbeeld drie verschillende parametersets hoe de train/test loss curve verloopt.
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
 De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
+
+---
+
+- Train het model met enkele educated guesses van parameters. 
+
+---
+### <span style='background :yellow' > **Antwoord:** </span>
+TOELICHTING.
+
+---
+
+- Rapporteer je bevindingen. Ga hier niet te uitgebreid hypertunen (dat is vraag 2), maar rapporteer (met een afbeelding in `antwoorden/img` die je linkt naar jouw .md antwoord) voor bijvoorbeeld drie verschillende parametersets hoe de train/test loss curve verloopt.
+
+---
+### <span style='background :yellow' > **Antwoord:** </span>
+TOELICHTING.
 
 ---
 
@@ -139,7 +153,7 @@ Implementeer de hypertuning voor jouw architectuur:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+Het bestand 02_tune.py is aangepast met het hypertune model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 2A.
 
 ---
 
@@ -147,7 +161,7 @@ TOELICHTING
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+Model is zoals bovenstaand beschreven ingevoegd in 02_tune.py.
 
 ---
 
@@ -155,7 +169,7 @@ TOELICHTING
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals opgenomen in settings.py (ihkv vraag 1D).
 
 ---
 
