@@ -134,9 +134,20 @@ Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoe
 ### <span style='background :yellow' > **Antwoord:** </span>
 <figure>
   <p align = "center">
-    <img src="img/gru_uitkomsten.png" style="width:50%">
+    <img src="img/gru_uitkomsten.png" style="width:100%">
     <figcaption align="center">
-      <b> Fig 1.GRU uitkomsten VERDER AANVULLEN</b>
+      <b> Fig 1. Uitkomsten GRU trainingen (Y as = Accuratie / X as = Aantal Epochs)</b>
+    </figcaption>
+  </p>
+</figure>
+TOELICHTING.
+
+### <span style='background :yellow' > **Antwoord:** </span>
+<figure>
+  <p align = "center">
+    <img src="img/gru_loss.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 2. Uitkomsten GRU LOSS (Y as = Loss / X as = Aantal Epochs)</b>
     </figcaption>
   </p>
 </figure>
@@ -152,16 +163,6 @@ TOELICHTING
 
 ---
 
-Hieronder een voorbeeld hoe je een plaatje met caption zou kunnen invoegen.
-
-<figure>
-  <p align = "center">
-    <img src="img/motivational.png" style="width:50%">
-    <figcaption align="center">
-      <b> Fig 1.Een motivational poster voor studenten Machine Learning (Stable Diffusion)</b>
-    </figcaption>
-  </p>
-</figure>
 
 ## Vraag 2
 Een andere collega heeft alvast een hypertuning opgezet in `dev/scripts/02_tune.py`.
