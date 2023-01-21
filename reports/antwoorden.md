@@ -134,7 +134,7 @@ Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoe
 ### <span style='background :yellow' > **Antwoord:** </span>
 <figure>
   <p align = "center">
-    <img src="img/gru_uitkomsten.png" style="width:100%">
+    <img src="img/gru_accuratie.png" style="width:100%">
     <figcaption align="center">
       <b> Fig 1. Uitkomsten GRU trainingen (Y as = Accuratie / X as = Aantal Epochs)</b>
     </figcaption>
