@@ -1,9 +1,8 @@
 from datetime import datetime
 
-import torch
 import tensorboard as tb
+import torch
 from loguru import logger
-
 
 from tentamen.data import datasets
 from tentamen.model import Accuracy
@@ -17,7 +16,6 @@ if __name__ == "__main__":
 
     # from tentamen.model import Linear
     # from tentamen.settings import LinearConfig
-    
 
     # # configs = [
     #     LinearConfig(
@@ -47,26 +45,24 @@ if __name__ == "__main__":
     #     logger.info(f"save model to {path}")
     #     torch.save(trainedmodel, path)
 
+    # TOEVOEGING TBV VRAAG 1D
 
-# TOEVOEGING TBV VRAAG 1D
+    from tentamen.model import gru_model
+    from tentamen.settings import gru_modelConfig
 
-    from tentamen.model import GRUmodel
-    from tentamen.settings import GRUmodelConfig
-
-    configs_GRUmodel = [
-        GRUmodelConfig(
-            input=13, 
-            output=20, 
-            tunedir=presets.logdir, 
-            hidden=64, 
-            dropout=0.2, 
-            num_layers=4
+    configs_gru_model = [
+        gru_modelConfig(
+            input=13,
+            output=20,
+            tunedir=presets.logdir,
+            hidden=64,
+            dropout=0.2,
+            num_layers=4,
         ),
     ]
 
-
-    for config in configs_GRUmodel:
-        model = GRUmodel(config.dict())  # type: ignore
+    for config in configs_gru_model:
+        model = gru_model(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
             epochs=50,

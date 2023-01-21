@@ -49,10 +49,11 @@ class Accuracy:
 
 # TOEVOEGING TBV VRAAG 1D
 
-class GRUmodel(nn.Module):
+
+class gru_model(nn.Module):
     def __init__(self, config: Dict) -> None:
         super().__init__()
-        
+
         self.rnn = nn.GRU(
             input_size=config["input"],
             hidden_size=config["hidden"],

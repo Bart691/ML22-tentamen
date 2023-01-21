@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict
 
 import ray
@@ -7,14 +8,11 @@ from ray import tune
 from ray.tune import CLIReporter
 from ray.tune.schedulers.hb_bohb import HyperBandForBOHB
 from ray.tune.search.bohb import TuneBOHB
-from pathlib import Path
 
 from tentamen.data import datasets
-from tentamen.model import Accuracy, Linear, GRUmodel
-from tentamen.settings import LinearSearchSpace, presets
-from tentamen.settings import GRUmodelSearchSpace, presets
+from tentamen.model import Accuracy, GRUmodel, Linear
+from tentamen.settings import GRUmodelSearchSpace, LinearSearchSpace, presets
 from tentamen.train import trainloop
-
 
 # def train(config: Dict) -> None:
 #     datadir = presets.datadir
@@ -78,6 +76,7 @@ from tentamen.train import trainloop
 
 
 # TOEVOEGING TBV VRAAG 2A
+
 
 def train(config: Dict) -> None:
     datadir = presets.datadir
