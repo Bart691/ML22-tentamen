@@ -111,7 +111,20 @@ De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het 
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-TOELICHTING.
+Voor de eerste run is het model getraind met de volgende parameters: 
+- Input: 13.
+- Hidden: 64.
+- Output: 20.
+- Num_layers: 4.
+- Dropout: 0,2.
+
+Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 10 classes de filters rond de 100 moeten zijn (dus 128 voor een x 2 effect).
+
+Voor de derde run heb ik geprobeerd om de output op 10 te zetten omdat ik twijfel of de output 20 wel de juiste is (getal 0 t/m 9 voor man en vrouw (=20) -> of alleen 0 t/m 9 (=10)). Door de aanpassing van 20 naar 10 krijgt de training een foutmelding, wat impliceert dat 20 de juiste output is.
+
+Voor de tweede poging van de derde run is de hidden size gewijzigd van 128 naar 256. De reden hiervoor is dat de accuratie in de tweede run omhoog is gegaan.
+
+Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
 ---
 
@@ -119,6 +132,14 @@ TOELICHTING.
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
+<figure>
+  <p align = "center">
+    <img src="img/gru_uitkomsten.png" style="width:50%">
+    <figcaption align="center">
+      <b> Fig 1.GRU uitkomsten VERDER AANVULLEN</b>
+    </figcaption>
+  </p>
+</figure>
 TOELICHTING.
 
 ---
@@ -180,8 +201,8 @@ De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals
 - Model gewijzigd naar GRUmodel
 - from tentamen.odel import GRUmodel & from pathlib import Path toegevoegd
 - Epochs naar 50
-- Zoekruimte in config gewijzigd naar SearchSpace, passend bij een RRN.
-- tune_dir en data_dir 
+- Zoekruimte in config gewijzigd naar SearchSpace, passend bij een RNN.
+
 
 ---
 
@@ -210,8 +231,29 @@ Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en ge
 ## Vraag 3
 ### 3a
 - fork deze repository.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+De repository is gefork en beschikbaar via https://github.com/Bart691/ML22-tentamen.
+
+---
+
 - Zorg voor nette code. Als je nu `make format && make lint` runt, zie je dat alles ok is. Hoewel het in sommige gevallen prima is om een ignore toe te voegen, is de bedoeling dat je zorgt dat je code zoveel als mogelijk de richtlijnen volgt van de linters.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+Door het runnen van make format && make lint is de code gecontroleerd en waar nodig gecorrigeerd. Het betreft een aantal kleine aanpassingen zoals het verwijderen van een mixed case.
+
+---
+
 - We werken sinds 22 november met git, en ik heb een `git crash coruse.pdf` gedeeld in les 2. Laat zien dat je in git kunt werken, door een git repo aan te maken en jouw code daarheen te pushen. Volg de vuistregel dat je 1) vaak (ruwweg elke dertig minuten aan code) commits doet 2) kleine, logische chunks van code/files samenvoegt in een commit 3) geef duidelijke beschrijvende namen voor je commit messages
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+Ik heb vanaf de start van de opdracht gewerkt via de bovenstaande methodiek door regelmatig de code te pushen met duidelijke beschrijvingen. Dit is terug te zien via https://github.com/Bart691/ML22-tentamen.
+
+---
+
 - Zorg voor duidelijke illustraties; voeg labels in voor x en y as, zorg voor eenheden op de assen, een titel, en als dat niet gaat (bv omdat het uit tensorboard komt) zorg dan voor een duidelijke caption van de afbeelding waar dat wel wordt uitgelegd.
 - Laat zien dat je je vragen kort en bondig kunt beantwoorden. De antwoordstrategie "ik schiet met hagel en hoop dat het goede antwoord ertussen zit" levert minder punten op dan een kort antwoord waar je de essentie weet te vangen. 
 - nodig mij uit (github handle: raoulg) voor je repository. 
