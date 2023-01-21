@@ -70,3 +70,19 @@ class GRUmodelSearchSpace(BaseSearchSpace):
     num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 8)
     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.05, 0.4)
     batchsize: Union[int, SAMPLE_INT] = tune.randint(32, 512)
+    
+    
+
+# # TOEVOEGING TBV VRAAG 2A
+    
+# presets = Settings(
+#     datadir=root / "data/raw",
+#     testurl="https://archive.ics.uci.edu/ml/machine-learning-databases/00195/Test_Arabic_Digit.txt",  # noqa N501
+#     trainurl="https://archive.ics.uci.edu/ml/machine-learning-databases/00195/Train_Arabic_Digit.txt",  # noqa N501
+#     testfile=Path("ArabicTest.txt"),
+#     trainfile=Path("ArabicTrain.txt"),
+#     modeldir=root / "models",
+#     logdir=root / "logs",
+#     modelname="model.pt",
+#     batchsize=128,
+# )
