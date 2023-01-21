@@ -111,20 +111,20 @@ De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het 
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Voor de eerste run is het model getraind met de volgende parameters: 
+**RUN 1:** Voor de eerste run is het model getraind met de volgende parameters: 
 - Input: 13.
 - Hidden: 64.
 - Output: 20.
 - Num_layers: 4.
 - Dropout: 0,2.
 
-Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 10 classes de filters rond de 100 moeten zijn (dus 128 voor een x 2 effect).
+**RUN 2:** Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 10 classes de filters rond de 100 moeten zijn (dus 128 voor een x 2 effect).
 
-Voor de derde run heb ik geprobeerd om de output op 10 te zetten omdat ik twijfel of de output 20 wel de juiste is (getal 0 t/m 9 voor man en vrouw (=20) -> of alleen 0 t/m 9 (=10)). Door de aanpassing van 20 naar 10 krijgt de training een foutmelding, wat impliceert dat 20 de juiste output is.
+**RUN 3 (1e poging):** Voor de derde run heb ik geprobeerd om de output op 10 te zetten omdat ik twijfel of de output 20 wel de juiste is (getal 0 t/m 9 voor man en vrouw (=20) -> of alleen 0 t/m 9 (=10)). Door de aanpassing van 20 naar 10 krijgt de training een foutmelding, wat impliceert dat 20 de juiste output is.
 
-Voor de tweede poging van de derde run is de hidden size gewijzigd van 128 naar 256. De reden hiervoor is dat de accuratie in de tweede run omhoog is gegaan.
+**RUN 3 (2e poging):** Voor de tweede poging van de derde run is de hidden size gewijzigd van 128 naar 256. De reden hiervoor is dat de accuratie in de tweede run omhoog is gegaan.
 
-Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
+**RUN 4:** Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
 ---
 
