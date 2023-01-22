@@ -16,7 +16,7 @@ De dropout staat op 0.5, hij heeft in een blog gelezen dat dit de beste settings
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand om mee te starten bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creëert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een RNN of CNN, zou geschikter zijn voor timeserie met een volgordelijkheid. 
+De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de hand om mee te starten bij een simpele dataset. Deze bevat een input layer, hidden layer en een output layer. Het sterke punt is dat dit model snel en simpel een baseline creëert en overfitting voorkomt. Het zwakke punt is dat de accuratie hoogstwaarschijnlijk te verbeteren is, mede omdat het gekozen model niet optimaal is voor deze data. Een ander model, zoals een RNN, zou geschikter zijn voor timeserie met een volgordelijkheid. 
 
 ---
 
@@ -100,7 +100,7 @@ Implementeer jouw veelbelovende model:
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU attention model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
+De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU (attention) model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
 
 ---
 
@@ -125,7 +125,7 @@ Om het model te trainen zijn er een viertal runs uitgevoerd, namelijk:
 
 **RUN 4:** Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
-**RUN 5:** 
+**RUN 5:** Als laatste is het gru attention model gebruikt met de instellingen van run 3.
 
 ***NB: in de zwarte blokken van de visualisatie staat aangegeven welke kleur bij run 1, 2, 3 en/of 4 hoort.***
 
@@ -165,7 +165,7 @@ In de vier runs is de loss als volgt waargenomen:
 - Run 2: Ook deze run geeft in de train, als test, een minder resultaat. Al is er vooruitgang ten opzichte van run 1. De loss is nog redelijk hoog met een enkele uitschieter.
 - Run 3: Deze run presteert zichtbaar het beste. Het model leert goed en er zijn geen signalen van bijvoorbeeld overfitting.
 - Run 4: Op zich presteert deze run ook goed, echter ten opzichte van run 3 zijn er tijdens de test meer uitschieters zichtbaar.
-- Run 5: 
+- Run 5: Door de toevoeging van een attention laag in het GRU model, met de instellingen van run 3, is de accuratie verder om hoog gegaan en de loss gedaald.
 
 ---
 
@@ -176,7 +176,7 @@ In de vier runs is de loss als volgt waargenomen:
 
 Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
 
-Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat. 
+Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat voor het gewone GRU model. Het GRU model met de attention laag heeft een nog betere accuratie van een dikke 98%. Dit is een mooi resultaat van een verkenning.  
 
 ---
 
