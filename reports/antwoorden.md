@@ -24,9 +24,10 @@ De keuze voor een relatief simpel neuraal netwerk met drie lagen ligt voor de ha
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-- Input 13 is gelijk aan het aantal attributen en klopt;
-- H1 100: In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. De keuze voor 100 lijkt dus in de goede richting te zijn. Om de stappen (filter x 2) tussen 8 t/m 512 te kunnen maken zou ik voor 128 (ipv 100) kiezen.
-- H2 10: Om deze beter te laten aansluiten met H1 en de Output zou ik deze op 64 of 32 zetten. 
+Analyse keuzes LinearConfig:
+- Input 13: Dit aantal is gelijk aan het aantal attributen en klopt;
+- H1 100: In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. Ik zou persoonlijk kiezen voor 256 omdat het 20 classes betreft. Redenatie is 100 is geschikt voor 10, dus 20 voor 200. Daarnaast wil ik de stappen (filter x 2) tussen 8 t/m 512 kunnen maken, dus in plaats van 200 is 256 een logische keuze. De resultaten van de tussentijdse opdracht bevestigen deze keuze (256 heeft daar de beste resultaten gegeven).
+- H2 10: Om deze beter te laten aansluiten met H1 en de Output zou ik deze op 64 zetten. 
 - Output 20: Is gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. 
 - Dropout 0,5: Dit lijkt, voor een relatief kleine dataset, aan de hoge kant met 0,5 (= een verlies van de helft). Een acceptabele start van de dropout lijkt mij 0,2. 
 ---
@@ -38,7 +39,7 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model niet werken. 
+Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model veel verwerkingstijd nodig hebben of in het slechtste geval niet werken. 
 
 ---
 
@@ -65,11 +66,7 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 
 ---
 ### <span style='background :yellow' > **Antwoord:** 
-Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, maar de GRU variant lost dit op. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn.
-
-Het model bevat de volgende lagen:  
-- abc
-- abc
+Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. Het GRU model bevat twee gates en een hidden state.
 
 ---
 
@@ -79,8 +76,9 @@ Het model bevat de volgende lagen:
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
+Voorgestelde instellingen GRU model:
 - Learning rate: Op basis van de uitkomsten tussentijdse opdracht is de instelling learning rate le-3 / 0,001 het beste gebleken voor de classificatie.
-- Filters hidden layers: 128 lijkt een mooie instelling om te starten. In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. Om de stappen (filter x 2) tussen 8 t/m 512 te kunnen maken is voor 128 (ipv 100) gekozen.
+- Hidden size: 64 lijkt een mooie instelling om te starten. Dit ondanks dat bij vraag 1a is aangeven dat 256 hoogstwaarschijnlijk de beste resultaten geeft start ik bij 64, vervolgens 128 en werk naar 256 toe.
 - Loss function: Cross-Entropy-Loss, omdat deze passend is voor een classificatie.
 - Optimizer: Adam, omdat deze optimizer wordt gezien als een van de betere optimizers en minder parameters nodig heeft. Dit is ook gebleken uit de resultaten van de tussentijdse opdracht.
 - Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen.
@@ -91,7 +89,7 @@ Het model bevat de volgende lagen:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training.
+Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training. De hidden size start bij 64, echter is de verwachting dat 256 betere resultaten geeft.
 
 ---
 
@@ -111,14 +109,16 @@ De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het 
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
+Er zijn een viertal runs uitgevoerd, namelijk:
+
 **RUN 1:** Voor de eerste run is het model getraind met de volgende parameters: 
 - Input: 13.
-- Hidden: 64.
+- Hidden size: 64.
 - Output: 20.
 - Num_layers: 4.
 - Dropout: 0,2.
 
-**RUN 2:** Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 10 classes de filters rond de 100 moeten zijn (dus 128 voor een x 2 effect).
+**RUN 2:** Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 20 classes de filters rond de 200 moeten zijn (dus 256 voor een x 2 effect).
 
 **RUN 3 (1e poging):** Voor de derde run heb ik geprobeerd om de output op 10 te zetten omdat ik twijfel of de output 20 wel de juiste is (getal 0 t/m 9 voor man en vrouw (=20) -> of alleen 0 t/m 9 (=10)). Door de aanpassing van 20 naar 10 krijgt de training een foutmelding, wat impliceert dat 20 de juiste output is.
 
@@ -140,9 +140,14 @@ De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het 
     </figcaption>
   </p>
 </figure>
-TOELICHTING.
+In totaal zijn er vier runs uitgevoerd met de instellingen zoals bij de bovenstaande vraag aangegeven.
 
-### <span style='background :yellow' > **Antwoord:** </span>
+- Run 1: De accuratie is 0,9444. 
+- Run 2: De accuratie is 0,9586.
+- Run 3: De accuratie is 0,9733.
+- Run 4: De accuratie is
+
+---
 <figure>
   <p align = "center">
     <img src="img/gru_loss.png" style="width:100%">
