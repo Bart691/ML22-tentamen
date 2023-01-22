@@ -28,8 +28,8 @@ Analyse keuzes LinearConfig:
 - Input 13: Dit aantal is gelijk aan het aantal attributen en klopt;
 - H1 100: In de les is naar voren gekomen dat voor 10 classes, de filterinstelling rond de 100 zou moeten zijn. Ik zou persoonlijk kiezen voor 256 omdat het 20 classes betreft. Redenatie is 100 is geschikt voor 10, dus 20 voor 200. Daarnaast wil ik de stappen (filter x 2) tussen 8 t/m 512 kunnen maken, dus in plaats van 200 is 256 een logische keuze. De resultaten van de tussentijdse opdracht bevestigen deze keuze (256 heeft daar de beste resultaten gegeven).
 - H2 10: Om deze beter te laten aansluiten met H1 en de Output zou ik deze op 64 zetten. 
-- Output 20: Is gelijk aan het aantal classificaties (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. 
-- Dropout 0,5: Dit lijkt, voor een relatief kleine dataset, aan de hoge kant met 0,5 (= een verlies van de helft). Een acceptabele start van de dropout lijkt mij 0,2. 
+- Output 20: Is gelijk aan het aantal classes (0 t/m 9 voor man en vrouw). Indien het alleen de cijfers betreft, zonder man/vrouw classificatie dan zou dit 10 moeten zijn. 
+- Dropout 0,5: Dit lijkt, voor een relatief kleine dataset, aan de hoge kant met 0,5 (= een verlies van de helft). Een acceptabele start van de dropout lijkt mij 0,2. Ook is het te overwegen om geen dropout te gebruiken voor relatief simpele dataset en een simpel linear model, welke ook al overfitting tegen gaat.
 ---
 
 ## 1b
@@ -66,7 +66,7 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 
 ---
 ### <span style='background :yellow' > **Antwoord:** 
-Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. Het GRU model bevat twee gates en een hidden state.
+Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU attention variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. Het GRU model bevat twee gates en een hidden state. ATTENTION TOELICHTEN
 
 ---
 
@@ -77,10 +77,11 @@ Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text
 Voorgestelde instellingen GRU model:
 - Learning rate: Op basis van de uitkomsten tussentijdse opdracht is de instelling learning rate le-3 / 0,001 het beste gebleken voor de classificatie.
 - Hidden size: 64 lijkt een mooie instelling om te starten. Dit ondanks dat bij vraag 1a is aangeven dat 256 hoogstwaarschijnlijk de beste resultaten geeft start ik bij 64, vervolgens 128 en werk naar 256 toe.
+- Output: 20 conform het aantal classes.
 - Loss function: Cross-Entropy-Loss, omdat deze passend is voor een classificatie.
 - Optimizer: Adam, omdat deze optimizer wordt gezien als een van de betere optimizers en minder parameters nodig heeft. Dit is ook gebleken uit de resultaten van de tussentijdse opdracht.
-- Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen.
-- Dimensies: Door de flatten optie te gebruiken wordt de twee dimensionaal data omgezet naar een eendimensionale array.
+- Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen. Het aantal 4 is deelbaar.
+- Dimensies: Mocht de modelkeuze het nodig hebben dan zou een flatten optie de dimensies kunnen aanpassen.
 ---
 
 - Geef aan wat jij verwacht dat de meest veelbelovende architectuur is, en waarom (opnieuw, laat zien dat je niet random getallen noemt, of keuzes maakt, maar dat jij je keuze baseert op ervaring die je hebt opgedaan met andere problemen).
@@ -99,7 +100,7 @@ Implementeer jouw veelbelovende model:
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
+De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU attention model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
 
 ---
 
@@ -124,6 +125,8 @@ Om het model te trainen zijn er een viertal runs uitgevoerd, namelijk:
 
 **RUN 4:** Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
+**RUN 5:** 
+
 ***NB: in de zwarte blokken van de visualisatie staat aangegeven welke kleur bij run 1, 2, 3 en/of 4 hoort.***
 
 ---
@@ -146,6 +149,7 @@ In totaal zijn er vier runs uitgevoerd met de volgende instellingen:
 - Run 2: De accuratie is 0,9586 (input 13, **hidden size 128**, output 20, num_layers 4, dropout 0,2).
 - Run 3: De accuratie is 0,9733 (input 13, **hidden size 256**, output 20, num_layers 4, dropout 0,2).
 - Run 4: De accuratie is 0,9667 (input 13, hidden size 256, output 20, num_layers 4, **dropout 0,5**).
+- Run 5: De accuratie is 0,9867 (input 13, hidden size 256, output 20, num_layers 4, dropout 0,2). **Voor deze run is het gru model met attention gebruikt.**
 
 ---
 <figure>
@@ -161,6 +165,7 @@ In de vier runs is de loss als volgt waargenomen:
 - Run 2: Ook deze run geeft in de train, als test, een minder resultaat. Al is er vooruitgang ten opzichte van run 1. De loss is nog redelijk hoog met een enkele uitschieter.
 - Run 3: Deze run presteert zichtbaar het beste. Het model leert goed en er zijn geen signalen van bijvoorbeeld overfitting.
 - Run 4: Op zich presteert deze run ook goed, echter ten opzichte van run 3 zijn er tijdens de test meer uitschieters zichtbaar.
+- Run 5: 
 
 ---
 
@@ -183,18 +188,11 @@ Implementeer de hypertuning voor jouw architectuur:
 - zorg dat je model geschikt is voor hypertuning
 - je mag je model nog wat aanpassen, als vraag 1d daar aanleiding toe geeft. Als je in 1d een ander model gebruikt dan hier, geef je model dan een andere naam zodat ik ze naast elkaar kan zien.
 - Stel dat je je model aanpast, laat dan je code zien (bv 2e model met aanpassing).
-
----
-### <span style='background :yellow' > **Antwoord:**</span>
-Het bestand 02_tune.py is aangepast met het hypertune model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 2A.
-
----
-
 - voeg jouw model in op de juiste plek in de `tune.py` file.
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Model is zoals bovenstaand beschreven ingevoegd in 02_tune.py.
+Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 2A.
 
 ---
 
@@ -211,8 +209,8 @@ De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
 - Model gewijzigd naar GRUmodel
-- from tentamen.odel import GRUmodel & from pathlib import Path toegevoegd
-- Epochs naar 50
+- from tentamen.model import GRUmodel & from pathlib import Path toegevoegd
+- Epochs naar 25
 - Zoekruimte in config gewijzigd naar SearchSpace, passend bij een RNN.
 
 
