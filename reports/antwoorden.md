@@ -39,7 +39,7 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Met de code bepaald men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model veel verwerkingstijd nodig hebben of in het slechtste geval niet werken. 
+Met de code bepaalt men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model veel verwerkingstijd nodig hebben of in het slechtste geval niet werken. 
 
 ---
 
@@ -55,7 +55,7 @@ Door het toepassen van een average pooling functie in het model wordt hetzelfde 
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Average pooling geeft de gemiddelde waarde. Het nadeel is een lagere kwaliteit in contrast door het gemiddelde, terwijl het voordeel is dat average pooling in staat is de plaatjes beter te exthraheren (minder effect op de waardes). 
+Average pooling geeft de gemiddelde waarde. Het nadeel is een lagere kwaliteit in contrast door het gemiddelde, terwijl het voordeel is dat average pooling in staat is de plaatjes beter te extraheren (minder effect op de waardes). 
 
 ---
 
@@ -69,8 +69,6 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. Het GRU model bevat twee gates en een hidden state.
 
 ---
-
- 
 
 - Geef vervolgens een indicatie en motivatie voor het aantal units/filters/kernelsize etc voor elke laag die je gebruikt, en hoe je omgaat met overgangen (bv van 3 naar 2 dimensies). Een indicatie is bijvoorbeeld een educated guess voor een aantal units, plus een boven en ondergrens voor het aantal units. Met een motivatie laat je zien dat jouw keuze niet een random selectie is, maar dat je 1) andere problemen hebt gezien en dit probleem daartegen kunt afzetten en 2) een besef hebt van de consquenties van het kiezen van een range.
 
@@ -109,7 +107,7 @@ De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het 
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Er zijn een viertal runs uitgevoerd, namelijk:
+Om het model te trainen zijn er een viertal runs uitgevoerd, namelijk:
 
 **RUN 1:** Voor de eerste run is het model getraind met de volgende parameters: 
 - Input: 13.
@@ -126,6 +124,8 @@ Er zijn een viertal runs uitgevoerd, namelijk:
 
 **RUN 4:** Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
+***NB: in de zwarte blokken van de visualisatie staat aangegeven welke kleur bij run 1, 2, 3 en/of 4 hoort.***
+
 ---
 
 - Rapporteer je bevindingen. Ga hier niet te uitgebreid hypertunen (dat is vraag 2), maar rapporteer (met een afbeelding in `antwoorden/img` die je linkt naar jouw .md antwoord) voor bijvoorbeeld drie verschillende parametersets hoe de train/test loss curve verloopt.
@@ -140,12 +140,12 @@ Er zijn een viertal runs uitgevoerd, namelijk:
     </figcaption>
   </p>
 </figure>
-In totaal zijn er vier runs uitgevoerd met de instellingen zoals bij de bovenstaande vraag aangegeven.
+In totaal zijn er vier runs uitgevoerd met de volgende instellingen:
 
-- Run 1: De accuratie is 0,9444. 
-- Run 2: De accuratie is 0,9586.
-- Run 3: De accuratie is 0,9733.
-- Run 4: De accuratie is
+- Run 1: De accuratie is 0,9444 (input 13, hidden size 64, output 20, num_layers 4, dropout 0,2).
+- Run 2: De accuratie is 0,9586 (input 13, **hidden size 128**, output 20, num_layers 4, dropout 0,2).
+- Run 3: De accuratie is 0,9733 (input 13, **hidden size 256**, output 20, num_layers 4, dropout 0,2).
+- Run 4: De accuratie is 0,9667 (input 13, hidden size 256, output 20, num_layers 4, **dropout 0,5**).
 
 ---
 <figure>
@@ -156,7 +156,11 @@ In totaal zijn er vier runs uitgevoerd met de instellingen zoals bij de bovensta
     </figcaption>
   </p>
 </figure>
-TOELICHTING.
+In de vier runs is de loss als volgt waargenomen:
+- Run 1: Deze run geeft zowel in de train, als test, een minder resultaat. De loss is significant hoger in de test en er zijn ook veel uitschieters zichtbaar. Dit duidt mogelijk op overfitting.
+- Run 2: Ook deze run geeft in de train, als test, een minder resultaat. Al is er vooruitgang ten opzichte van run 1. De loss is nog redelijk hoog met een enkele uitschieter.
+- Run 3: Deze run presteert zichtbaar het beste. Het model leert goed en er zijn geen signalen van bijvoorbeeld overfitting.
+- Run 4: Op zich presteert deze run ook goed, echter ten opzichte van run 3 zijn er tijdens de test meer uitschieters zichtbaar.
 
 ---
 
@@ -164,10 +168,12 @@ TOELICHTING.
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+
+Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
+
+Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat. 
 
 ---
-
 
 ## Vraag 2
 Een andere collega heeft alvast een hypertuning opgezet in `dev/scripts/02_tune.py`.
