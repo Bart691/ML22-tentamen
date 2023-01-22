@@ -87,7 +87,7 @@ def train(config: Dict) -> None:
     model = gru_model(config)  # type: ignore
 
     trainloop(
-        epochs=50,
+        epochs=25,
         model=model,  # type: ignore
         optimizer=torch.optim.Adam,
         learning_rate=1e-3,
