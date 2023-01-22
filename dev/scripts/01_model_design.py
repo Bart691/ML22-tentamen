@@ -62,7 +62,7 @@ if __name__ == "__main__":
             input=13,
             output=20,
             tunedir=presets.logdir,
-            hidden=128,
+            hidden=256,
             dropout=0.2,
             num_layers=4,
         ),
