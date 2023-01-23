@@ -9,30 +9,31 @@ from tentamen.model import Accuracy
 from tentamen.settings import presets
 from tentamen.train import trainloop
 
+
 if __name__ == "__main__":
     logger.add(presets.logdir / "01.log")
 
     trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    from tentamen.model import Linear
-    from tentamen.settings import LinearConfig
+    from tentamen.model import gru_model
+    from tentamen.settings import gru_modelConfig
 
-    configs = [
-        LinearConfig(
+    configs_gru_model = [
+        gru_modelConfig(
             input=13,
-            output=20, 
-            tunedir=presets.logdir, 
-            h1=100, 
-            h2=10, 
-            dropout=0.5
+            output=20,
+            tunedir=presets.logdir,
+            hidden=256,
+            dropout=0.2,
+            num_layers=4,
         ),
     ]
 
-    for config in configs:
-        model = Linear(config.dict())  # type: ignore
+    for config in configs_gru_model:
+        model = gru_model(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
-            epochs=50,
+            epochs=25,
             model=model,  # type: ignore
             optimizer=torch.optim.Adam,
             learning_rate=1e-3,
