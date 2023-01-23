@@ -276,9 +276,11 @@ In zijn algemeenheid is over bovenstaande aantallen te zien dat de meeste en vee
   </p>
 </figure>
 
-Naar Hidden 227, num_layer 4, dropout 0,18, batch size 211.
-
-TOELICHTING
+De uiteindelijke keuzes naar aanleiding van de hypertune zijn:
+-	Hidden size: 228
+-	Num_layer: 4
+-	Dropout: 0,18
+-	Batch size: 212
 
 ---
 
@@ -286,7 +288,9 @@ TOELICHTING
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+Omdat er bij het initiële experiment al een behoorlijk goede score van ruim 98% is behaald is het lastig om dit te overtreffen met hypertune. Ondanks dat de settings van het experiment zijn gedaan op eerdere ervaringen en gezonde redenaties is het ook een geval van geluk geweest. 
+
+Uit de hypertune komt een goede richting met settings welke ik heb gebruikt in het beste model scenario. Hier komt ook een goede score uit en deze komt dicht in de buurt bij de gelukstreffer van het experiment (0,9701 vs 0,9853).  Omdat de hypertune settings lijken op de settings van het experiment, wist ik dat dit een goed resultaat zou geven. De lagere instellingen bleken mindere resultaten te geven en dit is tussen run 2 en 3 bijgesteld. Het is mooi dat hypertune dit soort inzichten geeft en je niet handmatig deze verkenning moet doen, zoals de tussentijdse opdracht. Uit eigen ervaring kan ik zeggen dat dit behoorlijk veel tijd kost. Dit in tegenstelling tot hypertune. Voor de beeldvorming: handmatig zou me dit enkele dagen kosten en met hypertune heeft dit enkele uren in beslag genomen. Daarnaast is het proces van hypertune relatief eenvouding uit te voeren.
 
 ---
 
@@ -300,7 +304,7 @@ Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en ge
 
 De beste settings volgens hypertuning zijn als volgt:
 - Input: 13
-- Hidden: 212
+- Hidden: 228
 - Output: 20
 - Dropout: 0,18
 - Num Layers: 4
@@ -329,7 +333,7 @@ De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat he
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De repository is gefork en beschikbaar via https://github.com/Bart691/ML22-tentamen.
+De repository is geforkt en beschikbaar via https://github.com/Bart691/ML22-tentamen.
 
 ---
 
