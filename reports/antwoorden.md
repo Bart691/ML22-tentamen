@@ -39,7 +39,7 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Met de code bepaalt men vanuit welke dimensie de mean wordt berekend, in dit geval vanuit de tweede dimensie. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model veel verwerkingstijd nodig hebben of in het slechtste geval niet werken. 
+Met de code bepaalt men hoe de mean wordt berekend, in dit geval vanuit twee dimensies. Door deze stap te nemen zoekt de collega aansluiting tussen de data en het simpele lineaire model. Zonder aansluiting tussen de data en het model, zal het model veel verwerkingstijd nodig hebben of in het slechtste geval niet (goed) werken. 
 
 ---
 
@@ -47,7 +47,7 @@ Met de code bepaalt men vanuit welke dimensie de mean wordt berekend, in dit gev
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Door het toepassen van een average pooling functie in het model wordt hetzelfde resultaat bereikt. 
+Door het toepassen van een average pooling 2D functie in het model wordt hetzelfde resultaat bereikt. 
 
 ---
 
@@ -66,7 +66,7 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 
 ---
 ### <span style='background :yellow' > **Antwoord:** 
-Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU attention variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. Het GRU model bevat twee gates en een hidden state. ATTENTION TOELICHTEN
+Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text en spraak, en met het vermogen om waardes te onthouden, zoals een RNN, LSTM of GRU model. Een GRU is relatief simpel ten opzichte van een LSTM en een LSTM is minder geschikt voor deze simpele dataset. Een losstand RNN model zou mogelijk problemen met het geheugen kunnen krijgen, terwijl de GRU variant dit oplost. In principe zijn alle genoemde modellen te gebruiken, echter lijkt in dit geval de GRU de beste optie te zijn. 
 
 ---
 
@@ -76,11 +76,12 @@ Ik zou een model gebruiken geschikt voor sequentiële timeserie data, zoals text
 ### <span style='background :yellow' > **Antwoord:** </span>
 Voorgestelde instellingen GRU model:
 - Learning rate: Op basis van de uitkomsten tussentijdse opdracht is de instelling learning rate le-3 / 0,001 het beste gebleken voor de classificatie.
+- Input: 13, betreft het aantal attributen.
 - Hidden size: 64 lijkt een mooie instelling om te starten. Dit ondanks dat bij vraag 1a is aangeven dat 256 hoogstwaarschijnlijk de beste resultaten geeft start ik bij 64, vervolgens 128 en werk naar 256 toe.
 - Output: 20 conform het aantal classes.
 - Loss function: Cross-Entropy-Loss, omdat deze passend is voor een classificatie.
 - Optimizer: Adam, omdat deze optimizer wordt gezien als een van de betere optimizers en minder parameters nodig heeft. Dit is ook gebleken uit de resultaten van de tussentijdse opdracht.
-- Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen. Het aantal 4 is deelbaar.
+- Num layers: Deze zou ik op 4 zetten zodat er voldoende lagen zijn om het model te trainen.
 - Dimensies: Mocht de modelkeuze het nodig hebben dan zou een flatten optie de dimensies kunnen aanpassen.
 ---
 
@@ -88,7 +89,9 @@ Voorgestelde instellingen GRU model:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training. De hidden size start bij 64, echter is de verwachting dat 256 betere resultaten geeft.
+Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training. De hidden size start bij 64, echter is de verwachting dat 256 betere resultaten geeft. De input blijft gelijk aan het aantal attributen van 13 en de output op het aantal classes 20.
+
+Daarnaast ga ik voor 1 run met de beste instellingen een test houden wat het verschil is tussen een gewone GRU en een GRU attention.
 
 ---
 
@@ -100,7 +103,11 @@ Implementeer jouw veelbelovende model:
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-De bestanden model.py, settings.py en 01_model_design.py zijn aangepast met het GRU (attention) model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 1D.
+Een aantal acties zijn uitgevoerd om het model te introduceren, namelijk:
+- Creatie van 01D_gru_model_design.py ten behoeve van het reguliere GRU model.
+- Creatie van 01D_gruatt_model_design.py ten behoeve van het GRU attention model.
+- Toevoeging settings beide modellen in settings.py.
+- Toevoegen/aanpassen aanroepen modellen in Makefile met *'make run_linear', 'make run_gru'* en *'make run_gruatt'*. 
 
 ---
 
@@ -125,9 +132,9 @@ Om het model te trainen zijn er een viertal runs uitgevoerd, namelijk:
 
 **RUN 4:** Uit nieuwsgierigheid van de dropout effecten heb ik toch een vierde run uitgevoerd waarin de instellingen van de derde run zijn gebruikt. Uitzondering is de dropout, deze is van 0,2 naar 0,5 ingesteld.
 
-**RUN 5:** Als laatste is het gru attention model gebruikt met de instellingen van run 3.
+**RUN 5:** Als laatste is het gru attention model gebruikt met de beste instellingen (van run 3).
 
-***NB: in de zwarte blokken van de visualisatie staat aangegeven welke kleur bij run 1, 2, 3 en/of 4 hoort.***
+***NB: in de zwarte blokken van de visualisatie staat aangegeven welke kleur bij run 1, 2, 3, 4 en/of 5 hoort.***
 
 ---
 
@@ -149,7 +156,7 @@ In totaal zijn er vier runs uitgevoerd met de volgende instellingen:
 - Run 2: De accuratie is 0,9586 (input 13, **hidden size 128**, output 20, num_layers 4, dropout 0,2).
 - Run 3: De accuratie is 0,9733 (input 13, **hidden size 256**, output 20, num_layers 4, dropout 0,2).
 - Run 4: De accuratie is 0,9667 (input 13, hidden size 256, output 20, num_layers 4, **dropout 0,5**).
-- Run 5: De accuratie is 0,9867 (input 13, hidden size 256, output 20, num_layers 4, dropout 0,2). **Voor deze run is het gru model met attention gebruikt.**
+- Run 5 (attention): De accuratie is 0,9867 (input 13, hidden size 256, output 20, num_layers 4, dropout 0,2). **Voor deze run is het gru model met attention gebruikt.**
 
 ---
 <figure>
@@ -161,6 +168,7 @@ In totaal zijn er vier runs uitgevoerd met de volgende instellingen:
   </p>
 </figure>
 In de vier runs is de loss als volgt waargenomen:
+
 - Run 1: Deze run geeft zowel in de train, als test, een minder resultaat. De loss is significant hoger in de test en er zijn ook veel uitschieters zichtbaar. Dit duidt mogelijk op overfitting.
 - Run 2: Ook deze run geeft in de train, als test, een minder resultaat. Al is er vooruitgang ten opzichte van run 1. De loss is nog redelijk hoog met een enkele uitschieter.
 - Run 3: Deze run presteert zichtbaar het beste. Het model leert goed en er zijn geen signalen van bijvoorbeeld overfitting.
@@ -176,7 +184,7 @@ In de vier runs is de loss als volgt waargenomen:
 
 Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
 
-Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat voor het gewone GRU model. Het GRU model met de attention laag heeft een nog betere accuratie van een dikke 98%. Dit is een mooi resultaat van een verkenning.  
+Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat voor het gewone GRU model. Het GRU model met de attention laag heeft een nog betere accuratie van een dikke 98%. Dit is een mooi resultaat voor een verkenning.  
 
 ---
 
@@ -221,7 +229,59 @@ De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-TOELICHTING 
+Om de waardevolle resultaten uit de eerste verkenning vraag 1 te benutten is bij het hypertunen gebruik gemaakt van het GRU model. Hierbij zijn de volgende setting gebruikt:
+- Hidden size: Tussen de 64 en 256 conform experiment vraag 1.
+- Num layers: Tussen de 2 en 6 omdat tijdens het experiment al ruim 98% accuratie zichtbaar was met 4 layers.
+- Dropout: Tussen 0,1 en 0,4 om te bezien welke instelling het beste presteert, zonder teveel verlies van data.
+- Batchsize: Omdat het niet geheel duidelijk is welke batchsize een goede output geeft is een brede scope genomen van tussen 32 en 512.
+- Epoch: Wordt initieel ingesteld op 5 om een te lange draaitijd te voorkomen.
+
+**RUN 1 Hypertune:**
+
+<figure>
+  <p align = "center">
+    <img src="img/run1_hypertune.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 3. Run 1 Hypertune</b>
+    </figcaption>
+  </p>
+</figure>
+
+De uitkomt van run 1 geeft onvoldoende duidelijke resultaten om een goed oordeel te vellen. Daarom is gekozen om een tweede run te draaien met de epochs op 15 (ipv 5) en dezelfde instellingen.
+
+**RUN 2 Hypertune:**
+
+<figure>
+  <p align = "center">
+    <img src="img/run2_hypertune.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 4. Run 2 Hypertune</b>
+    </figcaption>
+  </p>
+</figure>
+
+Aanpassingen naar aanleiding van de resultaten run 2:
+- Hidden van 64 tot 256, naar 128 tot 256. 
+- Num_layers van 2 tot 6, naar 4 tot 6. 
+- Batchsize van 32 tot 512, naar 128 tot 512.
+- Epochs van 15 naar 25.
+
+In zijn algemeenheid is over bovenstaande aantallen te zien dat de meeste en veelbelovende activiteiten in de hogere aantallen liggen, vandaar dat de aantallen van de ondergrens zijn opgehoogd.
+
+**RUN 3 Hypertune:**
+
+<figure>
+  <p align = "center">
+    <img src="img/run3_hypertune.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 5. Run 3 Hypertune</b>
+    </figcaption>
+  </p>
+</figure>
+
+Hidden 227, num_layer 4, dropout 0,18, batch size 211.
+
+TOELICHTING
 
 ---
 
@@ -237,6 +297,34 @@ Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en ge
 
 ### 2c
 - Zorg dat jouw prijswinnende settings in een config komen te staan in `settings.py`, en train daarmee een model met een optimaal aantal epochs, daarvoor kun je `01_model_design.py` kopieren en hernoemen naar `2c_model_design.py`.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+
+De beste settings zijn als volgt:
+- Input: 13
+- Hidden:
+- Output: 20
+- Dropout:
+- Num Layers:
+- Learning rate: le-3 / 0,001
+- Epochs: 25
+- Batch size: 2
+
+Het beste model, met de beste instellingen, zijn toegevoegd in bestand 2c_model_design.py is in aanroepbaar via *'make run_bestmodel'*. 
+
+De resulaten van het beste model zijn onderstaand zichtbaar.
+
+<figure>
+  <p align = "center">
+    <img src="img/bestmodel.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 6. Accuratie best model</b>
+    </figcaption>
+  </p>
+</figure>
+
+---
 
 ## Vraag 3
 ### 3a
