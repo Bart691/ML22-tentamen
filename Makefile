@@ -10,6 +10,8 @@ run_gru:
 run_gruatt:	
 	export PYTHONPATH="$$HOME/code/tentamen" ;poetry run python dev/scripts/01D_gruatt_model_design.py
 
+run_bestmodel:	
+	export PYTHONPATH="$$HOME/code/tentamen" ;poetry run python dev/scripts/2C_model_design.py
 
 tune: 
 	export PYTHONPATH="$$HOME/code/tentamen" ;poetry run python dev/scripts/02_tune.py
