@@ -115,7 +115,7 @@ Een aantal acties zijn uitgevoerd om het model te introduceren, namelijk:
 
 ---
 ### <span style='background :yellow' > **Antwoord:** </span>
-Om het model te trainen zijn er een viertal runs uitgevoerd, namelijk:
+Om het model te trainen zijn er een vijftal runs uitgevoerd, namelijk:
 
 **RUN 1:** Voor de eerste run is het model getraind met de volgende parameters: 
 - Input: 13.
@@ -182,7 +182,7 @@ In de vier runs is de loss als volgt waargenomen:
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
 
-Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
+Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand en ervaring vanuit de tussentijdse opdracht al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
 
 Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat voor het gewone GRU model. Het GRU model met de attention laag heeft een nog betere accuratie van een dikke 98%. Dit is een mooi resultaat voor een verkenning.  
 
@@ -200,7 +200,7 @@ Implementeer de hypertuning voor jouw architectuur:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende instellingen. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 2A.
+Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende instellingen in settings.py. De input is gemarkeerd met # TOEVOEGING TBV VRAAG 2A.
 
 ---
 
@@ -208,24 +208,11 @@ Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende i
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals opgenomen in settings.py (ihkv vraag 1D).
+De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals opgenomen in settings.py.
 
 ---
 
 - Licht je keuzes toe: wat hypertune je, en wat niet? Waarom? En in welke ranges zoek je, en waarom? Zie ook de [docs van ray over search space](https://docs.ray.io/en/latest/tune/api_docs/search_space.html#tune-sample-docs) en voor [rondom search algoritmes](https://docs.ray.io/en/latest/tune/api_docs/suggestion.html#bohb-tune-search-bohb-tunebohb) voor meer opties en voorbeelden.
-
----
-### <span style='background :yellow' > **Antwoord:**</span>
-- Model gewijzigd naar GRUmodel
-- from tentamen.model import GRUmodel & from pathlib import Path toegevoegd
-- Epochs naar 25
-- Zoekruimte in config gewijzigd naar SearchSpace, passend bij een RNN.
-
-
----
-
-### 2b
-- Analyseer de resultaten van jouw hypertuning; visualiseer de parameters van jouw hypertuning en sla het resultaat van die visualisatie op in `reports/img`. Suggesties: `parallel_coordinates` kan handig zijn, maar een goed gekozen histogram of scatterplot met goede kleuren is in sommige situaties duidelijker! Denk aan x en y labels, een titel en units voor de assen.
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
@@ -235,6 +222,16 @@ Om de waardevolle resultaten uit de eerste verkenning vraag 1 te benutten is bij
 - Dropout: Tussen 0,1 en 0,4 om te bezien welke instelling het beste presteert, zonder teveel verlies van data.
 - Batchsize: Omdat het niet geheel duidelijk is welke batchsize een goede output geeft is een brede scope genomen van tussen 32 en 512.
 - Epoch: Wordt initieel ingesteld op 5 om een te lange draaitijd te voorkomen.
+
+
+---
+
+### 2b
+- Analyseer de resultaten van jouw hypertuning; visualiseer de parameters van jouw hypertuning en sla het resultaat van die visualisatie op in `reports/img`. Suggesties: `parallel_coordinates` kan handig zijn, maar een goed gekozen histogram of scatterplot met goede kleuren is in sommige situaties duidelijker! Denk aan x en y labels, een titel en units voor de assen.
+
+---
+### <span style='background :yellow' > **Antwoord:**</span>
+Er zijn een drietal runs hypertune uitgevoerd zoals onderstaand beschreven:
 
 **RUN 1 Hypertune:**
 
@@ -279,7 +276,7 @@ In zijn algemeenheid is over bovenstaande aantallen te zien dat de meeste en vee
   </p>
 </figure>
 
-Hidden 227, num_layer 4, dropout 0,18, batch size 211.
+Naar Hidden 227, num_layer 4, dropout 0,18, batch size 211.
 
 TOELICHTING
 
@@ -301,19 +298,19 @@ Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en ge
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
 
-De beste settings zijn als volgt:
+De beste settings volgens hypertuning zijn als volgt:
 - Input: 13
-- Hidden:
+- Hidden: 212
 - Output: 20
-- Dropout:
-- Num Layers:
+- Dropout: 0,18
+- Num Layers: 4
 - Learning rate: le-3 / 0,001
 - Epochs: 25
 - Batch size: 2
 
 Het beste model, met de beste instellingen, zijn toegevoegd in bestand 2c_model_design.py is in aanroepbaar via *'make run_bestmodel'*. 
 
-De resulaten van het beste model zijn onderstaand zichtbaar.
+De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat het best model (run best model 1), niet de beste resultaten geeft. Het model uit het experiment geeft de beste resultaten (run best model 2). Om het het een en ander in perpectief te brengen is ook het lineaire model toegevoegd. 
 
 <figure>
   <p align = "center">
