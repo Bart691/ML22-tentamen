@@ -1,6 +1,5 @@
 from datetime import datetime
 
-import tensorboard as tb
 import torch
 from loguru import logger
 
@@ -19,12 +18,7 @@ if __name__ == "__main__":
 
     configs = [
         LinearConfig(
-            input=13,
-            output=20, 
-            tunedir=presets.logdir, 
-            h1=100, 
-            h2=10, 
-            dropout=0.5
+            input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
         ),
     ]
 

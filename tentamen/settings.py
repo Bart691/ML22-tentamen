@@ -59,10 +59,12 @@ class LinearSearchSpace(BaseSearchSpace):
 
 # TOEVOEGING TBV VRAAG 1D
 
+
 class gru_modelConfig(BaseSearchSpace):
     hidden: int
     dropout: float
     num_layers: int
+
 
 class gruatt_modelConfig(BaseSearchSpace):
     hidden: int
@@ -72,11 +74,13 @@ class gruatt_modelConfig(BaseSearchSpace):
 
 # TOEVOEGING TBV VRAAG 2A
 
+
 class gru_modelSearchSpace(BaseSearchSpace):
     hidden: Union[int, SAMPLE_INT] = tune.randint(128, 256)
     num_layers: Union[int, SAMPLE_INT] = tune.randint(4, 6)
     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.4)
     batchsize: Union[int, SAMPLE_INT] = tune.randint(128, 512)
+
 
 class gruatt_modelSearchSpace(BaseSearchSpace):
     hidden: Union[int, SAMPLE_INT] = tune.randint(128, 256)

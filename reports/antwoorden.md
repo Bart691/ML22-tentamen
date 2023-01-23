@@ -341,7 +341,7 @@ De repository is geforkt en beschikbaar via https://github.com/Bart691/ML22-tent
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Door het runnen van make format && make lint is de code gecontroleerd en waar nodig gecorrigeerd. Het betreft een aantal kleine aanpassingen zoals het verwijderen van een mixed case.
+Door het runnen van make format && make lint is de code gecontroleerd en waar nodig gecorrigeerd. Het betreft een aantal kleine aanpassingen zoals het verwijderen van een mixed case en een ongebruikte verwijzing naar tensorboard. Een aantal CapWords uit settings.py, zoals gru_model**C**onfig, heb ik ongewijzigd gelaten.
 
 ---
 

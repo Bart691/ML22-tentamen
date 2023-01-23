@@ -10,8 +10,8 @@ from ray.tune.schedulers.hb_bohb import HyperBandForBOHB
 from ray.tune.search.bohb import TuneBOHB
 
 from tentamen.data import datasets
-from tentamen.model import Accuracy, gru_model, Linear
-from tentamen.settings import gru_modelSearchSpace, LinearSearchSpace, presets
+from tentamen.model import Accuracy, gru_model
+from tentamen.settings import gru_modelSearchSpace, presets
 from tentamen.train import trainloop
 
 # def train(config: Dict) -> None:
