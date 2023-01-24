@@ -77,13 +77,13 @@ class gruatt_modelConfig(BaseSearchSpace):
 
 class gru_modelSearchSpace(BaseSearchSpace):
     hidden: Union[int, SAMPLE_INT] = tune.randint(128, 256)
-    num_layers: Union[int, SAMPLE_INT] = tune.randint(4, 6)
-    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.4)
-    batchsize: Union[int, SAMPLE_INT] = tune.randint(128, 512)
+    num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 6)
+    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.3)
+    batchsize: Union[int, SAMPLE_INT] = tune.randint(50, 250)
 
 
 class gruatt_modelSearchSpace(BaseSearchSpace):
     hidden: Union[int, SAMPLE_INT] = tune.randint(128, 256)
-    num_layers: Union[int, SAMPLE_INT] = tune.randint(4, 6)
-    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.4)
-    batchsize: Union[int, SAMPLE_INT] = tune.randint(128, 512)
+    num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 6)
+    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.3)
+    batchsize: Union[int, SAMPLE_INT] = tune.randint(50, 250)

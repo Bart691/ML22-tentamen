@@ -1,0 +1,9 @@
+{
+  "batchsize": 58,
+  "dropout": 0.2260281992409106,
+  "hidden": 150,
+  "input": 13,
+  "num_layers": 4,
+  "output": 20,
+  "tunedir": "/home/azureuser/code/tentamen/models/ray"
+}
