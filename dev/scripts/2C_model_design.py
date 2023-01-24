@@ -23,7 +23,7 @@ if __name__ == "__main__":
             tunedir=presets.logdir,
             hidden=228,
             dropout=0.18,
-            num_layers=5,
+            num_layers=4,
         ),
     ]
 
