@@ -208,7 +208,7 @@ Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende i
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De zoekruimte is aangepast van LinearSearchSpace naar GRUmodelSearchSpace, zoals opgenomen in settings.py.
+De zoekruimtes gru_modelSearchSpace en gruattmodelSearchSpace zijn opgenomen in settings.py.
 
 ---
 
@@ -244,7 +244,7 @@ Er zijn een drietal runs hypertune uitgevoerd zoals onderstaand beschreven:
   </p>
 </figure>
 
-De uitkomt van run 1 geeft onvoldoende duidelijke resultaten om een goed oordeel te vellen. Daarom is gekozen om een tweede run te draaien met de epochs op 15 (ipv 5) en dezelfde instellingen.
+De uitkomst van run 1 geeft aan dat de batchsize en de dropout naar beneden kan en de hidden size omhoog. Ook zou ik het aantal epochs willen verhogen om meer resultaten te zien. Daarom is gekozen om een tweede run te draaien met de epochs op 25 (ipv 5) en een gewijzigde instelling voor de batchsize (van 32 tot 512, naar 50 tot 250), de dropout (van 01 tot 0,4, naar 0,1 tot 0,3) en de hidden size (van 64 tot 256, naar 128 tot 256).
 
 **RUN 2 Hypertune:**
 
@@ -257,30 +257,13 @@ De uitkomt van run 1 geeft onvoldoende duidelijke resultaten om een goed oordeel
   </p>
 </figure>
 
-Aanpassingen naar aanleiding van de resultaten run 2:
-- Hidden van 64 tot 256, naar 128 tot 256. 
-- Num_layers van 2 tot 6, naar 4 tot 6. 
-- Batchsize van 32 tot 512, naar 128 tot 512.
-- Epochs van 15 naar 25.
-
-In zijn algemeenheid is over bovenstaande aantallen te zien dat de meeste en veelbelovende activiteiten in de hogere aantallen liggen, vandaar dat de aantallen van de ondergrens zijn opgehoogd.
-
-**RUN 3 Hypertune:**
-
-<figure>
-  <p align = "center">
-    <img src="img/run3_hypertune.png" style="width:100%">
-    <figcaption align="center">
-      <b> Fig 5. Run 3 Hypertune</b>
-    </figcaption>
-  </p>
-</figure>
+In de tweede run is de accuratie een kleine 97% en voldoende om de beste parameters te kiezen. Mede omdat de beste resulaten rond dezelfde settings uitkomen met uitzondering van de num_layers, het beste resultaat is 5, maar de overige goede resulaten 4. Daarom is de keuze op 4 gevallen. Het lijkt geen meerwaarde te hebben om nog een run hypertune te doen.
 
 De uiteindelijke keuzes naar aanleiding van de hypertune zijn:
 -	Hidden size: 228
 -	Num_layer: 4
 -	Dropout: 0,18
--	Batch size: 212
+-	Batch size: 188
 
 ---
 
@@ -290,7 +273,7 @@ De uiteindelijke keuzes naar aanleiding van de hypertune zijn:
 ### <span style='background :yellow' > **Antwoord:**</span>
 Omdat er bij het initiële experiment al een behoorlijk goede score van ruim 98% is behaald is het lastig om dit te overtreffen met hypertune. Ondanks dat de settings van het experiment zijn gedaan op eerdere ervaringen en gezonde redenaties is het ook een geval van geluk geweest. 
 
-Uit de hypertune komt een goede richting met settings welke ik heb gebruikt in het beste model scenario. Hier komt ook een goede score uit en deze komt dicht in de buurt bij de gelukstreffer van het experiment (0,9701 vs 0,9853).  Omdat de hypertune settings lijken op de settings van het experiment, wist ik dat dit een goed resultaat zou geven. De lagere instellingen bleken mindere resultaten te geven en dit is tussen run 2 en 3 bijgesteld. Het is mooi dat hypertune dit soort inzichten geeft en je niet handmatig deze verkenning moet doen, zoals de tussentijdse opdracht. Uit eigen ervaring kan ik zeggen dat dit behoorlijk veel tijd kost. Dit in tegenstelling tot hypertune. Voor de beeldvorming: handmatig zou me dit enkele dagen kosten en met hypertune heeft dit enkele uren in beslag genomen. Daarnaast is het proces van hypertune relatief eenvouding uit te voeren.
+Uit de hypertune komt een goede richting met settings welke ik heb gebruikt in het beste model scenario. Hier komt ook een goede score uit en deze komt dicht in de buurt bij de gelukstreffer van het experiment (97% vs 98,5%).  Omdat de hypertune settings lijken op de settings van het experiment, wist ik dat dit een goed resultaat zou geven. De lagere instellingen bleken mindere resultaten te geven en dit is tussen run 1 en 2 bijgesteld. Het is mooi dat hypertune dit soort inzichten geeft en je niet handmatig deze verkenning moet doen, zoals de tussentijdse opdracht. Uit eigen ervaring kan ik zeggen dat dit behoorlijk veel tijd kost. Dit in tegenstelling tot hypertune. Voor de beeldvorming: handmatig zou me dit enkele dagen kosten en met hypertune heeft dit enkele uren in beslag genomen. Daarnaast is het proces van hypertune relatief eenvouding uit te voeren.
 
 ---
 
@@ -302,19 +285,19 @@ Importeer de afbeeldingen in jouw antwoorden, reflecteer op je experiment, en ge
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
 
-De beste settings volgens hypertuning zijn als volgt:
+De beste settings volgens hypertune zijn als volgt:
 - Input: 13
 - Hidden: 228
 - Output: 20
 - Dropout: 0,18
-- Num Layers: 4
+- Num Layers: 5
 - Learning rate: le-3 / 0,001
 - Epochs: 25
-- Batch size: 2
+- Batch size: 188
 
 Het beste model, met de beste instellingen, zijn toegevoegd in bestand 2c_model_design.py is in aanroepbaar via *'make run_bestmodel'*. 
 
-De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat het best model (run best model 1), niet de beste resultaten geeft. Het model uit het experiment geeft de beste resultaten (run best model 2). Om het het een en ander in perpectief te brengen is ook het lineaire model toegevoegd. 
+De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat het best model (run best model 1), niet de beste resultaten geeft. Het model uit het experiment geeft de beste resultaten (run best model 2). Om alles in perpectief te brengen is ook het lineaire model toegevoegd. 
 
 <figure>
   <p align = "center">
