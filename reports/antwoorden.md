@@ -55,7 +55,7 @@ Door het toepassen van een average pooling 2D functie in het model wordt hetzelf
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Average pooling geeft de gemiddelde waarde. Het nadeel is een lagere kwaliteit in contrast door het gemiddelde, terwijl het voordeel is dat average pooling in staat is de plaatjes beter te extraheren (minder effect op de waardes). 
+Average pooling geeft de gemiddelde waarde. Het nadeel is een lagere kwaliteit in contrast door het gemiddelde, terwijl het voordeel is dat average pooling in staat is de plaatjes in zijn algemeenheid beter te extraheren (minder effect op de waardes). 
 
 ---
 
@@ -91,7 +91,7 @@ Voorgestelde instellingen GRU model:
 ### <span style='background :yellow' > **Antwoord:**</span>
 Zoals eigenlijk al aangegeven bij de beantwoording van eerdere vragen zou ik gaan voor een GRU model omdat deze geschikt is voor een timeserie classificatie en het mogelijke geheugen probleem oplost. De loss functie passend bij een classificatie is Cross-Entropy-Loss. Voor de learning rate is is gekozen voor le-3 / 0,001, mede door de resultaten uit de tussentijdse opdracht. De optimizer is adam, omdat deze als een van de betere optimizer wordt gezien. Dit is ook gebleken tijdens het experiment van de tussentijdse opdracht. De num_layers op 4 zodat er voldoende lagen zijn voor een juiste training. De hidden size start bij 64, echter is de verwachting dat 256 betere resultaten geeft. De input blijft gelijk aan het aantal attributen van 13 en de output op het aantal classes 20.
 
-Daarnaast ga ik voor 1 run met de beste instellingen een test houden wat het verschil is tussen een gewone GRU en een GRU attention.
+Daarnaast ga ik voor 1 run met de tot dusver beste instellingen een test houden wat het verschil is tussen een gewone GRU en een GRU attention.
 
 ---
 
@@ -124,7 +124,7 @@ Om het model te trainen zijn er een vijftal runs uitgevoerd, namelijk:
 - Num_layers: 4.
 - Dropout: 0,2.
 
-**RUN 2:** Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 20 classes de filters rond de 200 moeten zijn (dus 256 voor een x 2 effect).
+**RUN 2:** Voor de tweede run is alleen de hidden size gewijzigd van 64 naar 128. De reden hiervoor is de input vanuit de les, dat voor 20 classes de filters rond de 200 moeten zijn (dus 256 voor een x 2 effect) en we toewerken naar 256.
 
 **RUN 3 (1e poging):** Voor de derde run heb ik geprobeerd om de output op 10 te zetten omdat ik twijfel of de output 20 wel de juiste is (getal 0 t/m 9 voor man en vrouw (=20) -> of alleen 0 t/m 9 (=10)). Door de aanpassing van 20 naar 10 krijgt de training een foutmelding, wat impliceert dat 20 de juiste output is.
 
@@ -182,7 +182,7 @@ In de vier runs is de loss als volgt waargenomen:
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
 
-Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand en ervaring vanuit de tussentijdse opdracht al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
+Zoals verwacht gaf hidden_size 256 de beste resultaten. Het is goed om te zien dat met een redenatie op boerenverstand en ervaring vanuit de tussentijdse opdracht al een goede richting kan geven aan een model. Wat verrassend was, is dat het wijzigen van de dropout (0,2 -> 0,5) weinig effect had op de uitkomst. Ook heb ik 4 runs gedaan met 50 epochs elk. In zowel de train als test is te zien dat de uitkomsten tussen de 20 en 25 epochs verzadigd raken. Het kan dus tijd schelen om in plaats van 50 voor 25 epochs te gaan. Dit scheelt significant in o.a. de tijdsduur en voorkomt mogelijke overfitting. Omdat ik twijfels had over de output (0 t/m 9 totaal = 10 of 0 t/m 9 voor man én vrouw = 20) heb ik geprobeerd de output op 10 te laten draaien, maar hier kreeg ik een foutmelding. Dit suggereert dat de output goed staat op 20.
 
 Al met al is een accuratie van ruim 97% voor een eerste aanzet al behoorlijk goed en ben ik tevreden met het resultaat voor het gewone GRU model. Het GRU model met de attention laag heeft een nog betere accuratie van een dikke 98%. Dit is een mooi resultaat voor een verkenning.  
 
@@ -208,7 +208,7 @@ Het bestand 02_tune.py is aangevuld met het hypertune GRU model en bijpassende i
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-De zoekruimtes gru_modelSearchSpace en gruattmodelSearchSpace zijn opgenomen in settings.py.
+De zoekruimtes gru_modelSearchSpace en gruatt_modelSearchSpace zijn opgenomen in settings.py.
 
 ---
 
@@ -244,7 +244,7 @@ Er zijn een drietal runs hypertune uitgevoerd zoals onderstaand beschreven:
   </p>
 </figure>
 
-De uitkomst van run 1 geeft aan dat de batchsize en de dropout naar beneden kan en de hidden size omhoog. Ook zou ik het aantal epochs willen verhogen om meer resultaten te zien. Daarom is gekozen om een tweede run te draaien met de epochs op 25 (ipv 5) en een gewijzigde instelling voor de batchsize (van 32 tot 512, naar 50 tot 250), de dropout (van 01 tot 0,4, naar 0,1 tot 0,3) en de hidden size (van 64 tot 256, naar 128 tot 256).
+De uitkomst van run 1 geeft aan dat de batchsize en de dropout naar beneden kan en de hidden size omhoog. Ook zou ik het aantal epochs willen verhogen om meer resultaten te zien. Daarom is gekozen om een tweede run te draaien met de epochs op 25 (ipv 5) en een gewijzigde instelling voor de batchsize (van 32 tot 512, naar 50 tot 250), de dropout (van 0,1 tot 0,4, naar 0,1 tot 0,3) en de hidden size (van 64 tot 256, naar 128 tot 256).
 
 **RUN 2 Hypertune:**
 
@@ -271,9 +271,9 @@ De uiteindelijke keuzes naar aanleiding van de hypertune zijn:
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Omdat er bij het initiële experiment al een behoorlijk goede score van ruim 98% is behaald is het lastig om dit te overtreffen met hypertune. Ondanks dat de settings van het experiment zijn gedaan op eerdere ervaringen en gezonde redenaties is het ook een geval van geluk geweest. 
+Omdat er bij het initiële experiment al een behoorlijk goede score van ruim 98% is behaald is het lastig om dit te overtreffen met hypertune. Ondanks dat de ingestelde settings van het experiment zijn opgedaan op eerdere ervaringen en gezonde redenaties, is het ook een geval van geluk geweest. 
 
-Uit de hypertune komt een goede richting met settings welke ik heb gebruikt in het beste model scenario. Hier komt ook een goede score uit en deze komt dicht in de buurt bij de gelukstreffer van het experiment (97% vs 98,5%).  Omdat de hypertune settings lijken op de settings van het experiment, wist ik dat dit een goed resultaat zou geven. De lagere instellingen bleken mindere resultaten te geven en dit is tussen run 1 en 2 bijgesteld. Het is mooi dat hypertune dit soort inzichten geeft en je niet handmatig deze verkenning moet doen, zoals de tussentijdse opdracht. Uit eigen ervaring kan ik zeggen dat dit behoorlijk veel tijd kost. Dit in tegenstelling tot hypertune. Voor de beeldvorming: handmatig zou me dit enkele dagen kosten en met hypertune heeft dit enkele uren in beslag genomen. Daarnaast is het proces van hypertune relatief eenvouding uit te voeren.
+Uit de hypertune komt een goede richting met settings welke ik uiteindelijk heb gebruikt in het beste model scenario. Hier komt ook een goede score uit en deze komt dicht in de buurt bij de gelukstreffer van het experiment (97% vs 98,5%).  Omdat de hypertune settings lijken op de settings van het experiment, wist ik dat dit een goed resultaat zou geven. De lagere instellingen bleken mindere resultaten te geven en dit is tussen run 1 en 2 bijgesteld. Het is mooi dat hypertune dit soort inzichten geeft en je niet handmatig deze verkenning moet doen, zoals de tussentijdse opdracht. Uit eigen ervaring kan ik zeggen dat dit behoorlijk veel tijd kost. Dit in tegenstelling tot hypertune. Voor de beeldvorming: handmatig zou me dit enkele dagen kosten en met hypertune heeft dit enkele uren in beslag genomen. Daarnaast is het proces van hypertune relatief eenvoudig uit te voeren. We kunnen dus spreken van een grote winst in tijd, kwaliteit en efficiëntie.
 
 ---
 
@@ -295,15 +295,15 @@ De beste settings volgens hypertune zijn als volgt:
 - Epochs: 25
 - Batch size: 188
 
-Het beste model, met de beste instellingen, zijn toegevoegd in bestand 2c_model_design.py is in aanroepbaar via *'make run_bestmodel'*. 
+Het beste model, met de beste instellingen, zijn toegevoegd in bestand 2c_model_design.py is in aanroep baar via *'make run_bestmodel'*. 
 
-De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat het best model (run best model 1), niet de beste resultaten geeft. Het model uit het experiment geeft de beste resultaten (run best model 2). Om alles in perpectief te brengen is ook het lineaire model toegevoegd. 
+De resulaten van het beste model zijn onderstaand zichtbaar. Opvallend is dat het best model (run best model 1), niet de beste resultaten geeft. Het model uit het experiment geeft de beste resultaten (run best model 2). Om alles in perspectief te brengen is ook het lineaire model toegevoegd. 
 
 <figure>
   <p align = "center">
     <img src="img/bestmodel.png" style="width:100%">
     <figcaption align="center">
-      <b> Fig 6. Accuratie best model</b>
+      <b> Fig 6. Accuratie best model (inclusief best experiment en Linear)</b>
     </figcaption>
   </p>
 </figure>
@@ -332,7 +332,7 @@ Door het runnen van make format && make lint is de code gecontroleerd en waar no
 
 ---
 ### <span style='background :yellow' > **Antwoord:**</span>
-Ik heb vanaf de start van de opdracht gewerkt via de bovenstaande methodiek door regelmatig de code te pushen met duidelijke beschrijvingen. Dit is terug te zien via https://github.com/Bart691/ML22-tentamen.
+Ik heb vanaf de start van de opdracht gewerkt via de bovenstaande methodiek door regelmatig de code te pushen met duidelijke beschrijvingen. Dit is terug te zien via https://github.com/raoulg/ML22-tentamen/compare/master...Bart691:ML22-tentamen:master.
 
 ---
 
