@@ -1,3 +1,6 @@
+Student: Bart B. 
+
+
 ```
 ├── README.md       <- this file
 ├── data            <- store your data here
